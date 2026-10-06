@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>UET Mardan Student Activities Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600&family=Source+Serif+4:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    /* Built by YOUR NAME - UET Mardan */
+    :root {
+      --navy: #14284b;
+      --blue: #2a5db0;
+      --gold: #c9962b;
+      --light: #f5f7fa;
+      --line: #dde3ec;
+      --text: #27303f;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Source Sans 3', sans-serif; color: var(--text); padding-top: 64px; line-height: 1.6; }
+    h1, h2, h3, h4, h5, .navbar-brand { font-family: 'Source Serif 4', serif; font-weight: 700; color: var(--navy); }
+    section { padding: 72px 0; scroll-margin-top: 64px; }
+    .bg-soft { background: var(--light); }
+    a:focus-visible, button:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+
+    /* Navbar */
+    .navbar { background: #fff; border-bottom: 1px solid var(--line); }
+    .navbar-brand { font-size: 1.25rem; }
+    .nav-link { color: var(--text); font-weight: 500; }
+    .nav-link:hover { color: var(--blue); }
+
+    /* Buttons */
+    .btn-main { background: var(--blue); color: #fff; border: 0; border-radius: 6px; padding: 10px 24px; font-weight: 600; }
+    .btn-main:hover { background: var(--navy); color: #fff; }
+    .btn-outline-light-x { border: 1px solid #fff; color: #fff; border-radius: 6px; padding: 10px 24px; font-weight: 600; }
+    .btn-outline-light-x:hover { background: #fff; color: var(--navy); }
+
+    /* Section headings */
+    .sec-head { margin-bottom: 36px; }
+    .sec-head h2 { font-size: 2rem; margin-bottom: 8px; }
+    .sec-head::after { content: ""; display: block; width: 56px; height: 3px; background: var(--gold); }
+
+    /* Hero */
+    .hero { background: var(--navy); color: #fff; padding: 80px 0; }
+    .hero h1 { color: #fff; font-size: clamp(2rem, 4.5vw, 3.2rem); line-height: 1.15; }
+    .hero p { color: #d3dcec; font-size: 1.15rem; }
+    .hero img { border-radius: 8px; width: 100%; height: 360px; object-fit: cover; }
+
+    /* About */
+    .about-img { border-radius: 8px; width: 100%; height: 320px; object-fit: cover; }
+
+    /* Event cards */
+    .ev-card { border: 1px solid var(--line); border-radius: 8px; overflow: hidden; height: 100%; background: #fff; }
+    .ev-card img { width: 100%; height: 180px; object-fit: cover; }
+    .ev-meta { color: var(--blue); font-size: .85rem; font-weight: 600; }
+
+    /* Gallery */
+    .gallery img { width: 100%; height: 190px; object-fit: cover; border-radius: 8px; }
+
+    /* Schedule */
+    .sched { border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: #fff; }
+    .sched table { margin: 0; }
+    .sched thead th { background: var(--navy); color: #fff; font-weight: 600; padding: 12px 16px; }
+    .sched td { padding: 12px 16px; }
+
+    /* Form */
+    .form-box { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 28px; }
+    .form-label { font-weight: 600; }
+    .form-control:focus, .form-select:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(42, 93, 176, .15); }
+    .form-check-input:checked { background-color: var(--blue); border-color: var(--blue); }
+    .side-img { width: 100%; height: 100%; min-height: 280px; object-fit: cover; border-radius: 8px; }
+
+    /* Contact */
+    .contact-item { border-left: 3px solid var(--gold); padding-left: 14px; margin-bottom: 14px; }
+
+    /* Source */
+    .code-box { background: #101a2e; color: #cfd8ea; padding: 20px; border-radius: 8px;
+                max-height: 520px; overflow: auto; font-size: 13px; }
+
+    footer { background: var(--navy); color: #c5d0e6; text-align: center; padding: 22px 12px; font-size: .95rem; }
+    footer b { color: #fff; }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="#home"><img src="images/uet-logo14.png" alt="UET Mardan logo" height="36" class="me-2">UET Mardan Portal</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-label="Toggle menu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="menu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#events">Events</a></li>
+          <li class="nav-item"><a class="nav-link" href="#schedule">Schedule</a></li>
+          <li class="nav-item"><a class="nav-link" href="#registration">Registration</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section id="home" class="hero">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6">
+          <h1>Student Activities Portal</h1>
+          <p class="mt-3 mb-4">Discover events at UET Mardan, check dates and venues, and register
+             for the activities that interest you.</p>
+          <a href="#events" class="btn btn-main me-2 mb-2">View Events</a>
+          <a href="#registration" class="btn btn-outline-light-x mb-2">Register</a>
+        </div>
+        <div class="col-lg-6">
+          <img src="images/02-min.jpg" alt="UET Mardan campus">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <div class="container">
+      <div class="row g-5 align-items-center">
+        <div class="col-lg-6">
+          <div class="sec-head"><h2>About the Portal</h2></div>
+          <p>The Student Activities Portal brings the sports, technical and cultural events of
+             UET Mardan together in one place, so students no longer have to rely on notice
+             boards and group chats.</p>
+          <p class="mb-0">Browse upcoming events, view the schedule, and complete your registration
+             online in a few minutes.</p>
+        </div>
+        <div class="col-lg-6">
+          <img src="images/03-min.jpg" class="about-img" alt="UET Mardan campus view">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Events -->
+  <section id="events" class="bg-soft">
+    <div class="container">
+      <div class="sec-head"><h2>Upcoming Events</h2></div>
+      <div class="row g-4">
+        <div class="col-12 col-sm-6 col-lg-3">
+          <div class="ev-card">
+            <img src="images/lab_5.JPG" alt="Computer lab">
+            <div class="p-3">
+              <div class="ev-meta">20 Oct 2026</div>
+              <h5 class="mt-1">Coding Contest</h5>
+              <p class="mb-0">Solve programming problems against the clock and win prizes.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-3">
+          <div class="ev-card">
+            <img src="images/sports_1.jpg" alt="Sports at UET Mardan">
+            <div class="p-3">
+              <div class="ev-meta">24 Oct 2026</div>
+              <h5 class="mt-1">Cricket Tournament</h5>
+              <p class="mb-0">Inter-department matches played on the main ground.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-3">
+          <div class="ev-card">
+            <img src="images/seminar_hall.jpg" alt="Seminar hall">
+            <div class="p-3">
+              <div class="ev-meta">28 Oct 2026</div>
+              <h5 class="mt-1">Career Seminar</h5>
+              <p class="mb-0">Guidance on careers and professional development from industry speakers.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-3">
+          <div class="ev-card">
+            <img src="images/societies_1.JPG" alt="University societies">
+            <div class="p-3">
+              <div class="ev-meta">05 Nov 2026</div>
+              <h5 class="mt-1">Societies Fair</h5>
+              <p class="mb-0">Meet the university societies and join the one that suits you.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section class="gallery">
+    <div class="container">
+      <div class="sec-head"><h2>Campus Moments</h2></div>
+      <div class="row g-3">
+        <div class="col-12 col-sm-4"><img src="images/04-min.jpg" alt="UET Mardan"></div>
+        <div class="col-12 col-sm-4"><img src="images/facility_2.jpg" alt="UET Mardan facilities"></div>
+        <div class="col-12 col-sm-4"><img src="images/home_4.jpeg" alt="UET Mardan campus"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Schedule -->
+  <section id="schedule" class="bg-soft">
+    <div class="container">
+      <div class="sec-head"><h2>Event Schedule</h2></div>
+      <div class="sched table-responsive">
+        <table class="table table-striped table-hover align-middle">
+          <thead>
+            <tr><th>Event Name</th><th>Date</th><th>Time</th><th>Venue</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Coding Contest</td><td>20 Oct 2026</td><td>10:00 AM</td><td>Computer Lab 1</td></tr>
+            <tr><td>Cricket Tournament</td><td>24 Oct 2026</td><td>02:00 PM</td><td>Main Ground</td></tr>
+            <tr><td>Career Seminar</td><td>28 Oct 2026</td><td>11:00 AM</td><td>Seminar Hall</td></tr>
+            <tr><td>Societies Fair</td><td>05 Nov 2026</td><td>09:30 AM</td><td>Main Lawn</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Registration -->
+  <section id="registration">
+    <div class="container">
+      <div class="sec-head"><h2>Event Registration</h2></div>
+      <div class="row g-4">
+        <div class="col-lg-7">
+          <form class="form-box">
+            <div class="mb-3">
+              <label for="fullname" class="form-label">Full Name</label>
+              <input type="text" class="form-control" id="fullname" placeholder="Enter your full name" required>
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" class="form-control" id="email" placeholder="name@example.com" required>
+            </div>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="dept" class="form-label">Department</label>
+                <select class="form-select" id="dept" required>
+                  <option value="">Choose department</option>
+                  <option>Computer Systems Engineering</option>
+                  <option>Electrical Engineering</option>
+                  <option>Civil Engineering</option>
+                  <option>Mechanical Engineering</option>
+                </select>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="event" class="form-label">Select Event</label>
+                <select class="form-select" id="event" required>
+                  <option value="">Choose event</option>
+                  <option>Coding Contest</option>
+                  <option>Cricket Tournament</option>
+                  <option>Career Seminar</option>
+                  <option>Societies Fair</option>
+                </select>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label d-block">Gender</label>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="gender" id="male" value="male" required>
+                <label class="form-check-label" for="male">Male</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="gender" id="female" value="female">
+                <label class="form-check-label" for="female">Female</label>
+              </div>
+            </div>
+            <div class="mb-4">
+              <label for="message" class="form-label">Message</label>
+              <textarea class="form-control" id="message" rows="4" placeholder="Anything we should know?"></textarea>
+            </div>
+            <button type="submit" class="btn btn-main">Submit Registration</button>
+          </form>
+        </div>
+        <div class="col-lg-5">
+          <img class="side-img" src="images/seminar_hall.jpg" alt="UET Mardan seminar hall">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="bg-soft">
+    <div class="container">
+      <div class="sec-head"><h2>Contact</h2></div>
+      <div class="row">
+        <div class="col-md-4"><div class="contact-item"><strong>Address</strong><br>Charsadda Road, 23200 Mardan, Khyber Pakhtunkhwa, Pakistan</div></div>
+        <div class="col-md-4"><div class="contact-item"><strong>Email</strong><br>info@uetmardan.edu.pk<br>+92-937-9230295</div></div>
+        <div class="col-md-4"><div class="contact-item"><strong>Office Hours</strong><br>Monday to Friday, 9:00 AM to 4:00 PM</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Source code -->
+  <section id="source">
+    <div class="container">
+      <div class="sec-head"><h2>Source Code</h2></div>
+      <pre class="code-box">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+  &lt;title&gt;UET Mardan Student Activities Portal&lt;/title&gt;
+  &lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;
+  &lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;
+  &lt;link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600&amp;family=Source+Serif+4:wght@600;700&amp;display=swap" rel="stylesheet"&gt;
+  &lt;link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"&gt;
+  &lt;style&gt;
+    /* Built by YOUR NAME - UET Mardan */
+    :root {
+      --navy: #14284b;
+      --blue: #2a5db0;
+      --gold: #c9962b;
+      --light: #f5f7fa;
+      --line: #dde3ec;
+      --text: #27303f;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Source Sans 3', sans-serif; color: var(--text); padding-top: 64px; line-height: 1.6; }
+    h1, h2, h3, h4, h5, .navbar-brand { font-family: 'Source Serif 4', serif; font-weight: 700; color: var(--navy); }
+    section { padding: 72px 0; scroll-margin-top: 64px; }
+    .bg-soft { background: var(--light); }
+    a:focus-visible, button:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+
+    /* Navbar */
+    .navbar { background: #fff; border-bottom: 1px solid var(--line); }
+    .navbar-brand { font-size: 1.25rem; }
+    .nav-link { color: var(--text); font-weight: 500; }
+    .nav-link:hover { color: var(--blue); }
+
+    /* Buttons */
+    .btn-main { background: var(--blue); color: #fff; border: 0; border-radius: 6px; padding: 10px 24px; font-weight: 600; }
+    .btn-main:hover { background: var(--navy); color: #fff; }
+    .btn-outline-light-x { border: 1px solid #fff; color: #fff; border-radius: 6px; padding: 10px 24px; font-weight: 600; }
+    .btn-outline-light-x:hover { background: #fff; color: var(--navy); }
+
+    /* Section headings */
+    .sec-head { margin-bottom: 36px; }
+    .sec-head h2 { font-size: 2rem; margin-bottom: 8px; }
+    .sec-head::after { content: ""; display: block; width: 56px; height: 3px; background: var(--gold); }
+
+    /* Hero */
+    .hero { background: var(--navy); color: #fff; padding: 80px 0; }
+    .hero h1 { color: #fff; font-size: clamp(2rem, 4.5vw, 3.2rem); line-height: 1.15; }
+    .hero p { color: #d3dcec; font-size: 1.15rem; }
+    .hero img { border-radius: 8px; width: 100%; height: 360px; object-fit: cover; }
+
+    /* About */
+    .about-img { border-radius: 8px; width: 100%; height: 320px; object-fit: cover; }
+
+    /* Event cards */
+    .ev-card { border: 1px solid var(--line); border-radius: 8px; overflow: hidden; height: 100%; background: #fff; }
+    .ev-card img { width: 100%; height: 180px; object-fit: cover; }
+    .ev-meta { color: var(--blue); font-size: .85rem; font-weight: 600; }
+
+    /* Gallery */
+    .gallery img { width: 100%; height: 190px; object-fit: cover; border-radius: 8px; }
+
+    /* Schedule */
+    .sched { border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: #fff; }
+    .sched table { margin: 0; }
+    .sched thead th { background: var(--navy); color: #fff; font-weight: 600; padding: 12px 16px; }
+    .sched td { padding: 12px 16px; }
+
+    /* Form */
+    .form-box { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 28px; }
+    .form-label { font-weight: 600; }
+    .form-control:focus, .form-select:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(42, 93, 176, .15); }
+    .form-check-input:checked { background-color: var(--blue); border-color: var(--blue); }
+    .side-img { width: 100%; height: 100%; min-height: 280px; object-fit: cover; border-radius: 8px; }
+
+    /* Contact */
+    .contact-item { border-left: 3px solid var(--gold); padding-left: 14px; margin-bottom: 14px; }
+
+    /* Source */
+    .code-box { background: #101a2e; color: #cfd8ea; padding: 20px; border-radius: 8px;
+                max-height: 520px; overflow: auto; font-size: 13px; }
+
+    footer { background: var(--navy); color: #c5d0e6; text-align: center; padding: 22px 12px; font-size: .95rem; }
+    footer b { color: #fff; }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+  &lt;!-- Navbar --&gt;
+  &lt;nav class="navbar navbar-expand-lg fixed-top"&gt;
+    &lt;div class="container"&gt;
+      &lt;a class="navbar-brand d-flex align-items-center" href="#home"&gt;&lt;img src="images/uet-logo14.png" alt="UET Mardan logo" height="36" class="me-2"&gt;UET Mardan Portal&lt;/a&gt;
+      &lt;button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-label="Toggle menu"&gt;
+        &lt;span class="navbar-toggler-icon"&gt;&lt;/span&gt;
+      &lt;/button&gt;
+      &lt;div class="collapse navbar-collapse" id="menu"&gt;
+        &lt;ul class="navbar-nav ms-auto"&gt;
+          &lt;li class="nav-item"&gt;&lt;a class="nav-link" href="#home"&gt;Home&lt;/a&gt;&lt;/li&gt;
+          &lt;li class="nav-item"&gt;&lt;a class="nav-link" href="#about"&gt;About&lt;/a&gt;&lt;/li&gt;
+          &lt;li class="nav-item"&gt;&lt;a class="nav-link" href="#events"&gt;Events&lt;/a&gt;&lt;/li&gt;
+          &lt;li class="nav-item"&gt;&lt;a class="nav-link" href="#schedule"&gt;Schedule&lt;/a&gt;&lt;/li&gt;
+          &lt;li class="nav-item"&gt;&lt;a class="nav-link" href="#registration"&gt;Registration&lt;/a&gt;&lt;/li&gt;
+          &lt;li class="nav-item"&gt;&lt;a class="nav-link" href="#contact"&gt;Contact&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/nav&gt;
+
+  &lt;!-- Hero --&gt;
+  &lt;section id="home" class="hero"&gt;
+    &lt;div class="container"&gt;
+      &lt;div class="row align-items-center g-5"&gt;
+        &lt;div class="col-lg-6"&gt;
+          &lt;h1&gt;Student Activities Portal&lt;/h1&gt;
+          &lt;p class="mt-3 mb-4"&gt;Discover events at UET Mardan, check dates and venues, and register
+             for the activities that interest you.&lt;/p&gt;
+          &lt;a href="#events" class="btn btn-main me-2 mb-2"&gt;View Events&lt;/a&gt;
+          &lt;a href="#registration" class="btn btn-outline-light-x mb-2"&gt;Register&lt;/a&gt;
+        &lt;/div&gt;
+        &lt;div class="col-lg-6"&gt;
+          &lt;img src="images/02-min.jpg" alt="UET Mardan campus"&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+
+  &lt;!-- About --&gt;
+  &lt;section id="about"&gt;
+    &lt;div class="container"&gt;
+      &lt;div class="row g-5 align-items-center"&gt;
+        &lt;div class="col-lg-6"&gt;
+          &lt;div class="sec-head"&gt;&lt;h2&gt;About the Portal&lt;/h2&gt;&lt;/div&gt;
+          &lt;p&gt;The Student Activities Portal brings the sports, technical and cultural events of
+             UET Mardan together in one place, so students no longer have to rely on notice
+             boards and group chats.&lt;/p&gt;
+          &lt;p class="mb-0"&gt;Browse upcoming events, view the schedule, and complete your registration
+             online in a few minutes.&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class="col-lg-6"&gt;
+          &lt;img src="images/03-min.jpg" class="about-img" alt="UET Mardan campus view"&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+
+  &lt;!-- Events --&gt;
+  &lt;section id="events" class="bg-soft"&gt;
+    &lt;div class="container"&gt;
+      &lt;div class="sec-head"&gt;&lt;h2&gt;Upcoming Events&lt;/h2&gt;&lt;/div&gt;
+      &lt;div class="row g-4"&gt;
+        &lt;div class="col-12 col-sm-6 col-lg-3"&gt;
+          &lt;div class="ev-card"&gt;
+            &lt;img src="images/lab_5.JPG" alt="Computer lab"&gt;
+            &lt;div class="p-3"&gt;
+              &lt;div class="ev-meta"&gt;20 Oct 2026&lt;/div&gt;
+              &lt;h5 class="mt-1"&gt;Coding Contest&lt;/h5&gt;
+              &lt;p class="mb-0"&gt;Solve programming problems against the clock and win prizes.&lt;/p&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="col-12 col-sm-6 col-lg-3"&gt;
+          &lt;div class="ev-card"&gt;
+            &lt;img src="images/sports_1.jpg" alt="Sports at UET Mardan"&gt;
+            &lt;div class="p-3"&gt;
+              &lt;div class="ev-meta"&gt;24 Oct 2026&lt;/div&gt;
+              &lt;h5 class="mt-1"&gt;Cricket Tournament&lt;/h5&gt;
+              &lt;p class="mb-0"&gt;Inter-department matches played on the main ground.&lt;/p&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="col-12 col-sm-6 col-lg-3"&gt;
+          &lt;div class="ev-card"&gt;
+            &lt;img src="images/seminar_hall.jpg" alt="Seminar hall"&gt;
+            &lt;div class="p-3"&gt;
+              &lt;div class="ev-meta"&gt;28 Oct 2026&lt;/div&gt;
+              &lt;h5 class="mt-1"&gt;Career Seminar&lt;/h5&gt;
+              &lt;p class="mb-0"&gt;Guidance on careers and professional development from industry speakers.&lt;/p&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="col-12 col-sm-6 col-lg-3"&gt;
+          &lt;div class="ev-card"&gt;
+            &lt;img src="images/societies_1.JPG" alt="University societies"&gt;
+            &lt;div class="p-3"&gt;
+              &lt;div class="ev-meta"&gt;05 Nov 2026&lt;/div&gt;
+              &lt;h5 class="mt-1"&gt;Societies Fair&lt;/h5&gt;
+              &lt;p class="mb-0"&gt;Meet the university societies and join the one that suits you.&lt;/p&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+
+  &lt;!-- Gallery --&gt;
+  &lt;section class="gallery"&gt;
+    &lt;div class="container"&gt;
+      &lt;div class="sec-head"&gt;&lt;h2&gt;Campus Moments&lt;/h2&gt;&lt;/div&gt;
+      &lt;div class="row g-3"&gt;
+        &lt;div class="col-12 col-sm-4"&gt;&lt;img src="images/04-min.jpg" alt="UET Mardan"&gt;&lt;/div&gt;
+        &lt;div class="col-12 col-sm-4"&gt;&lt;img src="images/facility_2.jpg" alt="UET Mardan facilities"&gt;&lt;/div&gt;
+        &lt;div class="col-12 col-sm-4"&gt;&lt;img src="images/home_4.jpeg" alt="UET Mardan campus"&gt;&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+
+  &lt;!-- Schedule --&gt;
+  &lt;section id="schedule" class="bg-soft"&gt;
+    &lt;div class="container"&gt;
+      &lt;div class="sec-head"&gt;&lt;h2&gt;Event Schedule&lt;/h2&gt;&lt;/div&gt;
+      &lt;div class="sched table-responsive"&gt;
+        &lt;table class="table table-striped table-hover align-middle"&gt;
+          &lt;thead&gt;
+            &lt;tr&gt;&lt;th&gt;Event Name&lt;/th&gt;&lt;th&gt;Date&lt;/th&gt;&lt;th&gt;Time&lt;/th&gt;&lt;th&gt;Venue&lt;/th&gt;&lt;/tr&gt;
+          &lt;/thead&gt;
+          &lt;tbody&gt;
+            &lt;tr&gt;&lt;td&gt;Coding Contest&lt;/td&gt;&lt;td&gt;20 Oct 2026&lt;/td&gt;&lt;td&gt;10:00 AM&lt;/td&gt;&lt;td&gt;Computer Lab 1&lt;/td&gt;&lt;/tr&gt;
+            &lt;tr&gt;&lt;td&gt;Cricket Tournament&lt;/td&gt;&lt;td&gt;24 Oct 2026&lt;/td&gt;&lt;td&gt;02:00 PM&lt;/td&gt;&lt;td&gt;Main Ground&lt;/td&gt;&lt;/tr&gt;
+            &lt;tr&gt;&lt;td&gt;Career Seminar&lt;/td&gt;&lt;td&gt;28 Oct 2026&lt;/td&gt;&lt;td&gt;11:00 AM&lt;/td&gt;&lt;td&gt;Seminar Hall&lt;/td&gt;&lt;/tr&gt;
+            &lt;tr&gt;&lt;td&gt;Societies Fair&lt;/td&gt;&lt;td&gt;05 Nov 2026&lt;/td&gt;&lt;td&gt;09:30 AM&lt;/td&gt;&lt;td&gt;Main Lawn&lt;/td&gt;&lt;/tr&gt;
+          &lt;/tbody&gt;
+        &lt;/table&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+
+  &lt;!-- Registration --&gt;
+  &lt;section id="registration"&gt;
+    &lt;div class="container"&gt;
+      &lt;div class="sec-head"&gt;&lt;h2&gt;Event Registration&lt;/h2&gt;&lt;/div&gt;
+      &lt;div class="row g-4"&gt;
+        &lt;div class="col-lg-7"&gt;
+          &lt;form class="form-box"&gt;
+            &lt;div class="mb-3"&gt;
+              &lt;label for="fullname" class="form-label"&gt;Full Name&lt;/label&gt;
+              &lt;input type="text" class="form-control" id="fullname" placeholder="Enter your full name" required&gt;
+            &lt;/div&gt;
+            &lt;div class="mb-3"&gt;
+              &lt;label for="email" class="form-label"&gt;Email&lt;/label&gt;
+              &lt;input type="email" class="form-control" id="email" placeholder="name@example.com" required&gt;
+            &lt;/div&gt;
+            &lt;div class="row"&gt;
+              &lt;div class="col-md-6 mb-3"&gt;
+                &lt;label for="dept" class="form-label"&gt;Department&lt;/label&gt;
+                &lt;select class="form-select" id="dept" required&gt;
+                  &lt;option value=""&gt;Choose department&lt;/option&gt;
+                  &lt;option&gt;Computer Systems Engineering&lt;/option&gt;
+                  &lt;option&gt;Electrical Engineering&lt;/option&gt;
+                  &lt;option&gt;Civil Engineering&lt;/option&gt;
+                  &lt;option&gt;Mechanical Engineering&lt;/option&gt;
+                &lt;/select&gt;
+              &lt;/div&gt;
+              &lt;div class="col-md-6 mb-3"&gt;
+                &lt;label for="event" class="form-label"&gt;Select Event&lt;/label&gt;
+                &lt;select class="form-select" id="event" required&gt;
+                  &lt;option value=""&gt;Choose event&lt;/option&gt;
+                  &lt;option&gt;Coding Contest&lt;/option&gt;
+                  &lt;option&gt;Cricket Tournament&lt;/option&gt;
+                  &lt;option&gt;Career Seminar&lt;/option&gt;
+                  &lt;option&gt;Societies Fair&lt;/option&gt;
+                &lt;/select&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="mb-3"&gt;
+              &lt;label class="form-label d-block"&gt;Gender&lt;/label&gt;
+              &lt;div class="form-check form-check-inline"&gt;
+                &lt;input class="form-check-input" type="radio" name="gender" id="male" value="male" required&gt;
+                &lt;label class="form-check-label" for="male"&gt;Male&lt;/label&gt;
+              &lt;/div&gt;
+              &lt;div class="form-check form-check-inline"&gt;
+                &lt;input class="form-check-input" type="radio" name="gender" id="female" value="female"&gt;
+                &lt;label class="form-check-label" for="female"&gt;Female&lt;/label&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="mb-4"&gt;
+              &lt;label for="message" class="form-label"&gt;Message&lt;/label&gt;
+              &lt;textarea class="form-control" id="message" rows="4" placeholder="Anything we should know?"&gt;&lt;/textarea&gt;
+            &lt;/div&gt;
+            &lt;button type="submit" class="btn btn-main"&gt;Submit Registration&lt;/button&gt;
+          &lt;/form&gt;
+        &lt;/div&gt;
+        &lt;div class="col-lg-5"&gt;
+          &lt;img class="side-img" src="images/seminar_hall.jpg" alt="UET Mardan seminar hall"&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+
+  &lt;!-- Contact --&gt;
+  &lt;section id="contact" class="bg-soft"&gt;
+    &lt;div class="container"&gt;
+      &lt;div class="sec-head"&gt;&lt;h2&gt;Contact&lt;/h2&gt;&lt;/div&gt;
+      &lt;div class="row"&gt;
+        &lt;div class="col-md-4"&gt;&lt;div class="contact-item"&gt;&lt;strong&gt;Address&lt;/strong&gt;&lt;br&gt;Charsadda Road, 23200 Mardan, Khyber Pakhtunkhwa, Pakistan&lt;/div&gt;&lt;/div&gt;
+        &lt;div class="col-md-4"&gt;&lt;div class="contact-item"&gt;&lt;strong&gt;Email&lt;/strong&gt;&lt;br&gt;info@uetmardan.edu.pk&lt;br&gt;+92-937-9230295&lt;/div&gt;&lt;/div&gt;
+        &lt;div class="col-md-4"&gt;&lt;div class="contact-item"&gt;&lt;strong&gt;Office Hours&lt;/strong&gt;&lt;br&gt;Monday to Friday, 9:00 AM to 4:00 PM&lt;/div&gt;&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+
+  &lt;!-- Source code --&gt;
+  &lt;section id="source"&gt;
+    &lt;div class="container"&gt;
+      &lt;div class="sec-head"&gt;&lt;h2&gt;Source Code&lt;/h2&gt;&lt;/div&gt;
+      &lt;pre class="code-box"&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+
+  &lt;footer&gt;
+    &lt;div&gt;Designed and developed by &lt;b&gt;Saad Tariq&lt;/b&gt;, Full Stack Developer&lt;/div&gt;
+    &lt;small&gt;&amp;copy; 2026 UET Mardan Student Activities Portal&lt;/small&gt;
+  &lt;/footer&gt;
+
+  &lt;script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+    </div>
+  </section>
+
+  <footer>
+    <div>Designed and developed by <b>Saad Tariq</b>, Full Stack Developer</div>
+    <small>&copy; 2026 UET Mardan Student Activities Portal</small>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+`
