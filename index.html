@@ -11,30 +11,63 @@
   <style>
     /* Built by YOUR NAME - UET Mardan */
     :root {
+      color-scheme: light;
       --navy: #14284b;
       --blue: #2a5db0;
+      --action: #2a5db0;
       --gold: #c9962b;
       --light: #f5f7fa;
       --line: #dde3ec;
       --text: #27303f;
+      --heading: #14284b;
+      --surface: #fff;
+      --surface-soft: #f5f7fa;
+      --shadow-section: rgba(20, 40, 75, .035);
+      --shadow-surface: 0 4px 18px rgba(20, 40, 75, .07);
+      --shadow-card: 0 8px 24px rgba(20, 40, 75, .07);
+    }
+    :root[data-theme="dark"] {
+      color-scheme: dark;
+      --blue: #8bb8ff;
+      --gold: #f0c96b;
+      --line: #354253;
+      --text: #d9e1ec;
+      --heading: #f1f5fa;
+      --surface: #151d28;
+      --surface-soft: #1b2634;
+      --shadow-section: rgba(0, 0, 0, .12);
+      --shadow-surface: 0 4px 18px rgba(0, 0, 0, .24);
+      --shadow-card: 0 8px 24px rgba(0, 0, 0, .24);
     }
     html { scroll-behavior: smooth; }
-    body { font-family: 'Source Sans 3', sans-serif; color: var(--text); padding-top: 64px; line-height: 1.6; }
-    h1, h2, h3, h4, h5, .navbar-brand { font-family: 'Source Serif 4', serif; font-weight: 700; color: var(--navy); }
-    section { padding: 72px 0; scroll-margin-top: 64px; }
-    .bg-soft { background: var(--light); }
+    body { font-family: 'Source Sans 3', sans-serif; color: var(--text); background: var(--surface); padding-top: 64px; line-height: 1.6; transition: background-color .25s ease, color .25s ease; }
+    h1, h2, h3, h4, h5, .navbar-brand { font-family: 'Source Serif 4', serif; font-weight: 700; color: var(--heading); }
+    section { padding: clamp(48px, 7vw, 72px) 0; scroll-margin-top: 76px; }
+    .bg-soft { background: var(--surface-soft); box-shadow: inset 0 12px 26px var(--shadow-section), inset 0 -12px 26px var(--shadow-section); }
     a:focus-visible, button:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
 
     /* Navbar */
-    .navbar { background: #fff; border-bottom: 1px solid var(--line); }
+    .navbar { background: var(--surface); border-bottom: 1px solid var(--line); box-shadow: var(--shadow-surface); }
     .navbar-brand { font-size: 1.25rem; }
-    .nav-link { color: var(--text); font-weight: 500; }
+    .navbar-brand img { width: 36px; height: 36px; object-fit: cover; object-position: left center; border-radius: 50%; background: #fff; transition: transform .25s ease; }
+    .nav-link { color: var(--text); font-weight: 500; position: relative; transition: color .2s ease; }
+    .nav-link::after { content: ""; position: absolute; left: .5rem; right: .5rem; bottom: .25rem; height: 2px; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform .2s ease; }
     .nav-link:hover { color: var(--blue); }
+    .nav-link:hover::after, .nav-link:focus-visible::after { transform: scaleX(1); }
+    .navbar-collapse { max-height: calc(100vh - 64px); overflow-y: auto; }
+    .theme-toggle { display: inline-flex; align-items: center; gap: 9px; padding: 8px 12px; color: var(--text); font-size: .95rem; cursor: pointer; white-space: nowrap; }
+    .theme-toggle input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+    .theme-toggle-track { position: relative; width: 38px; height: 22px; flex: 0 0 auto; border: 1px solid var(--line); border-radius: 999px; background: var(--surface-soft); transition: background-color .2s ease, border-color .2s ease; }
+    .theme-toggle-track::after { content: ""; position: absolute; top: 3px; left: 3px; width: 14px; height: 14px; border-radius: 50%; background: var(--text); transition: transform .2s ease; }
+    .theme-toggle input:checked + .theme-toggle-track { background: var(--blue); border-color: var(--blue); }
+    .theme-toggle input:checked + .theme-toggle-track::after { background: var(--surface); transform: translateX(16px); }
+    .theme-toggle input:focus-visible + .theme-toggle-track { outline: 3px solid var(--gold); outline-offset: 2px; }
+    :root[data-theme="dark"] .navbar-toggler-icon { filter: invert(1); }
 
     /* Buttons */
-    .btn-main { background: var(--blue); color: #fff; border: 0; border-radius: 6px; padding: 10px 24px; font-weight: 600; }
+    .btn-main { background: var(--action); color: #fff; border: 0; border-radius: 6px; padding: 10px 24px; font-weight: 600; transition: background .2s ease, color .2s ease, transform .2s ease, box-shadow .2s ease; }
     .btn-main:hover { background: var(--navy); color: #fff; }
-    .btn-outline-light-x { border: 1px solid #fff; color: #fff; border-radius: 6px; padding: 10px 24px; font-weight: 600; }
+    .btn-outline-light-x { border: 1px solid #fff; color: #fff; border-radius: 6px; padding: 10px 24px; font-weight: 600; transition: background .2s ease, color .2s ease, transform .2s ease, box-shadow .2s ease; }
     .btn-outline-light-x:hover { background: #fff; color: var(--navy); }
 
     /* Section headings */
@@ -46,31 +79,38 @@
     .hero { background: var(--navy); color: #fff; padding: 80px 0; }
     .hero h1 { color: #fff; font-size: clamp(2rem, 4.5vw, 3.2rem); line-height: 1.15; }
     .hero p { color: #d3dcec; font-size: 1.15rem; }
-    .hero img { border-radius: 8px; width: 100%; height: 360px; object-fit: cover; }
+    .hero img { display: block; border-radius: 8px; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; }
+    .hero-media, .about-media, .registration-media, .gallery-media { overflow: hidden; border-radius: 8px; }
 
     /* About */
-    .about-img { border-radius: 8px; width: 100%; height: 320px; object-fit: cover; }
+    .about-img { display: block; border-radius: 8px; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; }
 
     /* Event cards */
-    .ev-card { border: 1px solid var(--line); border-radius: 8px; overflow: hidden; height: 100%; background: #fff; }
-    .ev-card img { width: 100%; height: 180px; object-fit: cover; }
+    .ev-card { border: 1px solid var(--line); border-radius: 8px; overflow: hidden; height: 100%; background: var(--surface); box-shadow: var(--shadow-card); transition: transform .3s ease, box-shadow .3s ease, background-color .25s ease; }
+    .ev-card img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; }
     .ev-meta { color: var(--blue); font-size: .85rem; font-weight: 600; }
 
     /* Gallery */
-    .gallery img { width: 100%; height: 190px; object-fit: cover; border-radius: 8px; }
+    .gallery img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 8px; }
+    .hero-media img, .about-media img, .registration-media img, .gallery-media img, .ev-card img { transition: transform .45s cubic-bezier(.2, .7, .2, 1), filter .35s ease; }
 
     /* Schedule */
-    .sched { border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: #fff; }
+    .sched { border: 1px solid var(--line); border-radius: 8px; background: var(--surface); box-shadow: var(--shadow-card); }
     .sched table { margin: 0; }
+    .sched table { min-width: 620px; }
+    .sched .table { --bs-table-color: var(--text); --bs-table-bg: var(--surface); --bs-table-striped-bg: var(--surface-soft); --bs-table-hover-bg: var(--surface-soft); --bs-table-border-color: var(--line); }
     .sched thead th { background: var(--navy); color: #fff; font-weight: 600; padding: 12px 16px; }
     .sched td { padding: 12px 16px; }
 
     /* Form */
-    .form-box { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 28px; }
+    .form-box { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: clamp(18px, 4vw, 28px); box-shadow: var(--shadow-card); }
     .form-label { font-weight: 600; }
+    .form-control, .form-select { color: var(--text); background-color: var(--surface); border-color: var(--line); }
+    .form-control::placeholder { color: #788596; }
+    .form-check-input { background-color: var(--surface); border-color: var(--line); }
     .form-control:focus, .form-select:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(42, 93, 176, .15); }
     .form-check-input:checked { background-color: var(--blue); border-color: var(--blue); }
-    .side-img { width: 100%; height: 100%; min-height: 280px; object-fit: cover; border-radius: 8px; }
+    .side-img { display: block; width: 100%; height: clamp(280px, 38vw, 480px); object-fit: cover; border-radius: 8px; }
 
     /* Contact */
     .contact-item { border-left: 3px solid var(--gold); padding-left: 14px; margin-bottom: 14px; }
@@ -78,9 +118,34 @@
     /* Source */
     .code-box { background: #101a2e; color: #cfd8ea; padding: 20px; border-radius: 8px;
                 max-height: 520px; overflow: auto; font-size: 13px; }
+    .source-details { border: 1px solid var(--line); border-radius: 8px; background: var(--surface); box-shadow: var(--shadow-card); }
+    .source-details summary { padding: 14px 18px; color: var(--blue); font-weight: 600; cursor: pointer; }
+    .source-details .code-box { margin: 0 16px 16px; }
 
     footer { background: var(--navy); color: #c5d0e6; text-align: center; padding: 22px 12px; font-size: .95rem; }
     footer b { color: #fff; }
+    @media (hover: hover) {
+      .navbar-brand:hover img { transform: scale(1.08); }
+      .btn-main:hover, .btn-outline-light-x:hover { transform: translateY(-2px); box-shadow: 0 5px 14px rgba(20, 40, 75, .2); }
+      .ev-card:hover { transform: translateY(-4px); box-shadow: 0 10px 24px rgba(20, 40, 75, .12); }
+      .hero-media:hover img, .about-media:hover img, .registration-media:hover img, .gallery-media:hover img, .ev-card:hover img { transform: scale(1.04); filter: brightness(1.04); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition: none !important; animation: none !important; }
+      .navbar-brand:hover img, .btn-main:hover, .btn-outline-light-x:hover, .ev-card:hover,
+      .hero-media:hover img, .about-media:hover img, .registration-media:hover img, .gallery-media:hover img, .ev-card:hover img { transform: none; }
+    }
+    @media (max-width: 575.98px) {
+      .navbar-brand { max-width: calc(100vw - 140px); font-size: 1rem; white-space: normal; }
+      .navbar-brand img { flex: 0 0 auto; }
+      .hero .row, #about .row { --bs-gutter-x: 1.5rem; }
+      .hero { padding: 52px 0; }
+      .hero img { aspect-ratio: 4 / 3; }
+      .sec-head { margin-bottom: 28px; }
+      .sec-head h2 { font-size: 1.75rem; }
+      .side-img { height: 260px; }
+    }
   </style>
 </head>
 <body>
@@ -89,7 +154,7 @@
   <nav class="navbar navbar-expand-lg fixed-top">
     <div class="container">
       <a class="navbar-brand d-flex align-items-center" href="#home"><img src="images/uet-logo14.png" alt="UET Mardan logo" height="36" class="me-2">UET Mardan Portal</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-label="Toggle menu">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Toggle menu">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="menu">
@@ -100,6 +165,13 @@
           <li class="nav-item"><a class="nav-link" href="#schedule">Schedule</a></li>
           <li class="nav-item"><a class="nav-link" href="#registration">Registration</a></li>
           <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+          <li class="nav-item">
+            <label class="theme-toggle" for="theme-toggle">
+              <input type="checkbox" id="theme-toggle" role="switch">
+              <span class="theme-toggle-track" aria-hidden="true"></span>
+              <span>Dark mode</span>
+            </label>
+          </li>
         </ul>
       </div>
     </div>
@@ -116,7 +188,7 @@
           <a href="#events" class="btn btn-main me-2 mb-2">View Events</a>
           <a href="#registration" class="btn btn-outline-light-x mb-2">Register</a>
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-6 hero-media">
           <img src="images/02-min.jpg" alt="UET Mardan campus">
         </div>
       </div>
@@ -135,7 +207,7 @@
           <p class="mb-0">Browse upcoming events, view the schedule, and complete your registration
              online in a few minutes.</p>
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-6 about-media">
           <img src="images/03-min.jpg" class="about-img" alt="UET Mardan campus view">
         </div>
       </div>
@@ -196,9 +268,9 @@
     <div class="container">
       <div class="sec-head"><h2>Campus Moments</h2></div>
       <div class="row g-3">
-        <div class="col-12 col-sm-4"><img src="images/04-min.jpg" alt="UET Mardan"></div>
-        <div class="col-12 col-sm-4"><img src="images/facility_2.jpg" alt="UET Mardan facilities"></div>
-        <div class="col-12 col-sm-4"><img src="images/home_4.jpeg" alt="UET Mardan campus"></div>
+        <div class="col-12 col-sm-4 gallery-media"><img src="images/04-min.jpg" alt="UET Mardan"></div>
+        <div class="col-12 col-sm-4 gallery-media"><img src="images/facility_2.jpg" alt="UET Mardan facilities"></div>
+        <div class="col-12 col-sm-4 gallery-media"><img src="images/home_4.jpeg" alt="UET Mardan campus"></div>
       </div>
     </div>
   </section>
@@ -278,7 +350,7 @@
             <button type="submit" class="btn btn-main">Submit Registration</button>
           </form>
         </div>
-        <div class="col-lg-5">
+        <div class="col-lg-5 registration-media">
           <img class="side-img" src="images/seminar_hall.jpg" alt="UET Mardan seminar hall">
         </div>
       </div>
@@ -300,7 +372,9 @@
   <!-- Source code -->
   <section id="source">
     <div class="container">
-      <div class="sec-head"><h2>Source Code</h2></div>
+      <div class="sec-head"><h2>Source Snapshot</h2></div>
+      <details class="source-details">
+        <summary>View the archived page markup</summary>
       <pre class="code-box">&lt;!DOCTYPE html&gt;
 &lt;html lang="en"&gt;
 &lt;head&gt;
@@ -616,7 +690,8 @@
   &lt;script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"&gt;&lt;/script&gt;
 &lt;/body&gt;
 &lt;/html&gt;
-</pre>
+  </pre>
+  </details>
     </div>
   </section>
 
@@ -626,6 +701,22 @@
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const themeToggle = document.getElementById("theme-toggle");
+    try {
+      if (localStorage.getItem("uet-theme") === "dark") {
+        document.documentElement.dataset.theme = "dark";
+      }
+    } catch {}
+    themeToggle.checked = document.documentElement.dataset.theme === "dark";
+    themeToggle.addEventListener("change", () => {
+      const theme = themeToggle.checked ? "dark" : "light";
+      document.documentElement.dataset.theme = theme;
+      try {
+        localStorage.setItem("uet-theme", theme);
+      } catch {}
+    });
+  </script>
 </body>
 </html>
 `
